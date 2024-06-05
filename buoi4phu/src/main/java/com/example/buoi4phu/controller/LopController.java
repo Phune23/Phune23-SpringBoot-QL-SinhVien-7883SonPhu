@@ -31,12 +31,11 @@ public class LopController {
     }
 
     @PostMapping("/add")
-    public String addLop( @ModelAttribute("lop") Lop lop){
-//        if(result.hasErrors()){
-//
-//            // trả về view thông tin lỗi
-//            return "lop/add";
-//        }
+    public String addLop(@Valid @ModelAttribute("lop") Lop lop, BindingResult result){
+        if(result.hasErrors()){
+            // trả về view thông tin lỗi
+            return "lop/add";
+        }
         lopService.addLop(lop);
         return "redirect:/lop";
     }
@@ -58,7 +57,11 @@ public class LopController {
     }
 
     @PostMapping("/edit/{maLop}")
-    public String updateLop( @PathVariable("maLop") Long maLop, @ModelAttribute("lop") Lop lop){
+    public String updateLop(@Valid @PathVariable("maLop") Long maLop, @ModelAttribute("lop") Lop lop, BindingResult result){
+        if(result.hasErrors()){
+            // trả về view thông tin lỗi
+            return "lop/edit";
+        }
         Lop lopDetails = lopService.getLopById(maLop);
 
         if (lopDetails != null){

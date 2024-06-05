@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <th:block th:replace="~{layout::link-css}"></th:block>
+        <title>Thêm Sinh Viên</title>
+    </head>
+    <body>
+    <th:block th:replace="~{layout::header}"></th:block>
+    <div class="container">
+        <h1>Thêm mới sinh viên</h1>
+        <form th:action="@{/sinhvien/add}" th:object="${sinhVien}" method="post">
+            <div class="col-6 mb-3">
+                <label class="form-label" for="mssv">Mã số sinh viên: </label>
+                <input class="form-control" type="text" th:field="*{mssv}" id="mssv">
+                <span th:if="${#fields.hasErrors('mssv')}" th:errors="*{mssv}" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="hoTen">Họ Tên: </label>
+                <input class="form-control" type="text" th:field="*{hoTen}" id="hoTen">
+                <span th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="ngaySinh">Ngày Sinh: </label>
+                <input class="form-control" type="date" th:field="*{ngaySinh}" id="ngaySinh">
+                <span th:if="${#fields.hasErrors('ngaySinh')}" th:errors="*{ngaySinh}" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="email">Email: </label>
+                <input class="form-control" type="email" th:field="*{email}" id="email">
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label class="form-label" for="lop.tenLop">Lớp: </label>
+                <input class="form-control" type="text" th:field="*{lop.tenLop}" id="lop.tenLop"/>
+                <span th:if="${#fields.hasErrors('lop.tenLop')}" th:errors="*{lop.tenLop}" class="text-danger"></span>
+           </div>
+
+            <input type="submit" class="btn btn-primary" value="Thêm môn">
+        </form>
+        <br>
+        <a type="button" class="btn btn-outline-dark" th:href="@{/sinhvien}">Trở về</a>
+    </div>
+    <th:block th:replace="~{layout::footer}"></th:block>
+    </body>
+</html>
